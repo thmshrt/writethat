@@ -3,6 +3,11 @@
 
 # `writethat`
 
+## TLDR
+
+1.  install package
+2.  read showcase \[<https://thmshrt.github.io/writethat/>\]
+
 ## Motivation
 
 Package development in R can be tricky. For new developers, it is not
