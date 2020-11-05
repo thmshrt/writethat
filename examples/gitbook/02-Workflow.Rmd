@@ -1,0 +1,89 @@
+
+```{r setup chapter 2, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = FALSE,
+  warning = FALSE,
+  message = FALSE
+  )
+```
+
+# Workflow
+
+## Basic
+
+1. Create a new package
+
+```{r}
+library(devtools)
+library(usethis)
+library(writethat)
+usethis::create_package(path = '.')
+```
+
+2. Create a function
+
+```{r}
+writethat::use_r.function('R/myfun.R')
+```
+
+3. Edit file (or just copy this)
+
+```
+#' #BEGIN: documentation
+#' this will be in the \\title{} section
+#'
+#' this will be in the \\description{} section
+#'
+#' @param arg1 [any] an argument to be printed
+#' @param arg2 [any] another argument to be printed
+#' @return NULL
+#'
+#' @usage my_metadoc_fun(arg1 = NULL, arg2 = "value2")
+#'
+#' # if @export present, this function will be exported
+#' @export
+#END: documentation
+
+#BEGIN: code
+
+my_metadoc_fun = function(arg1 = NULL, arg2 = "value2") {
+  cat(sprintf('my_metadoc_fun called:\n'))
+  cat(sprintf('arg1:\n'))
+  print(arg1)
+  cat(sprintf('arg2:\n'))
+  print(arg1)
+}
+
+#END: code
+
+#BEGIN: examples
+#' @examples
+#' # a first example
+#' my_metadoc_fun()
+#'
+#' # an example with arguments passed by position
+#' a_value = 3
+#' my_metadoc_fun(a_value)
+#'
+#' # an example with arguments passed by keyword
+#' a_value = 3
+#' my_metadoc_fun(arg1 = a_value)
+#'
+#END: examples
+```
+
+4. Reformat for packaging
+
+```{r}
+writethat::reformat_packaging('R/myfun.R',dry_run = FALSE)
+```
+
+5. Build and check
+
+```{r}
+devtools::build()
+devtools::check()
+```
+
+

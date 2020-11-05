@@ -1,0 +1,23 @@
+Package: writethat
+Title: Templated package development
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Thomas",
+           family = "Hart",
+           role = c("aut", "cre"),
+           email = "thh4002@med.cornell.edu")
+Description: Are you new to R and looking to quickly develop a package without
+    having to figure out how to setup documentation for your functions? Writethat
+    has a template for that. Need to reformat your code to conform to CRAN's 
+    standard? Writethat can help.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    magrittr,
+    readr,
+    rlang,
+    rstudioapi,
+    stringi
