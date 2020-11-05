@@ -1,0 +1,30 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# `writethat`
+
+## Motivation
+
+Package development in R can be tricky. For new developers, it is not
+obvious where to place the title of your documentation, the description
+of your documentation, or `@import` for that matter. Misplacement can
+result in warnings and notes that delay the publishing of a package to
+CRAN in addition to being frustrating to debug. In addition the format
+of documentation is not always conducive to developing. For instance
+`@examples` must be placed before a function. `writethat` looks to
+address a few of these issues as it expands its scope.
+
+## Installation
+
+`writethat` will be available in CRAN as soon as it is approved
+
+``` r
+install.packages('writethat')
+```
+
+For now `writethat` can be installed from github using
+
+``` r
+library(devtools)
+devtools::install_github('thmshrt/writethat')
+```
