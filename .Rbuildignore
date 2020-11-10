@@ -1,5 +1,7 @@
 ^writethat\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^examples/
 ^README\.Rmd$
+^examples/
+^docs/
+^helpers/

@@ -4,7 +4,10 @@
 \alias{create_showcase}
 \title{Extract examples from documentation and place in gitbook}
 \usage{
-create_showcase(r_dir_path = "./R", gitbook_dir_path = "./examples/showcase/")
+create_showcase(
+  r_dir_path = './R',
+  gitbook_dir_path = './examples/showcase/'
+)
 }
 \arguments{
 \item{r_dir_path}{[character], length 1, dir path of R file}
@@ -12,9 +15,13 @@ create_showcase(r_dir_path = "./R", gitbook_dir_path = "./examples/showcase/")
 \item{gitbook_dir_path}{[character], length 1, output directory}
 }
 \description{
-#' @usage
-create_showcase(
-r_dir_path = './R',
-gitbook_dir_path = './examples/showcase/'
-)
+Extract examples from documentation and place in gitbook
+}
+\examples{
+#BEGIN: example
+\dontrun{
+# simplest example
+create_showcase()
+}
+#END: example
 }

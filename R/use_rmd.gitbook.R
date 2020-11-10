@@ -1,9 +1,8 @@
-
 #BEGIN: description
 #' Gitbook template
 #'
 #' @usage
-#' use_md.githbook(
+#' use_rmd.githbook(
 #'   dir_path
 #' )
 #'
@@ -12,6 +11,19 @@
 #' @export
 #' @importFrom magrittr %>%
 #END: description
+#BEGIN: examples
+#' @examples
+#' #BEGIN: example
+#' \dontrun{
+#' # create the template
+#' library(usethis)
+#' library(writethat)
+#' use_rmd.githbook('my_book')
+#' # start editing a file
+#' usethis::edit_file('./my_book/01-roadmap.Rmd')
+#' }
+#' #END: example
+#END: examples
 #BEGIN: code
 
 use_rmd.githbook = function(
@@ -137,14 +149,3 @@ template_references.bib = "
 }
 
 #END: code
-#BEGIN: examples
-#' @examples
-#' #BEGIN: example
-#' # create the template
-#' library(usethis)
-#' library(writethat)
-#' use_rmd.githbook('my_book')
-#' # start editing a file
-#' usethis::edit_file('./my_book/01-roadmap.Rmd')
-#' #END: example
-#END: examples

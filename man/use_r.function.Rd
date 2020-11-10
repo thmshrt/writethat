@@ -17,3 +17,13 @@ use_r.function(
 \description{
 Create file for function using packaging template
 }
+\examples{
+#BEGIN: example
+\dontrun{
+# creates a file
+use_r.function('./myfun.R')
+# will not overwrite an existing file
+use_r.function('./myfun.R')
+}
+#END: example
+}

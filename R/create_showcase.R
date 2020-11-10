@@ -1,4 +1,3 @@
-
 #BEGIN: description
 #' Extract examples from documentation and place in gitbook
 #'
@@ -15,6 +14,15 @@
 #' @export
 #' @importFrom magrittr %>%
 #END: description
+#BEGIN: examples
+#' @examples
+#' #BEGIN: example
+#' \dontrun{
+#' # simplest example
+#' create_showcase()
+#' }
+#' #END: example
+#END: examples
 #BEGIN: code
 
 create_showcase = function(
@@ -41,20 +49,3 @@ create_showcase = function(
 }
 
 #END: code
-#BEGIN: examples
-#' @examples
-#' #BEGIN: example
-#' # {case description}
-#' {code placeholder}
-#' #END: example
-#'
-#' #BEGIN: example
-#' # {case description}
-#' {code placeholder}
-#' #END: example
-#'
-#' #BEGIN: example
-#' # {case description}
-#' {code placeholder}
-#' #END: example
-#END: examples
