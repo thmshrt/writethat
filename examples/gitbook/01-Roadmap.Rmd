@@ -1,8 +1,8 @@
 
-```{r setup chapter 1, include=FALSE}
+```{r setup roadmap, include=FALSE}
 knitr::opts_chunk$set(
-  echo = TRUE,
-  eval = FALSE,
+  echo = FALSE,
+  eval = TRUE,
   warning = FALSE,
   message = FALSE
   )
@@ -10,7 +10,9 @@ knitr::opts_chunk$set(
 
 # Roadmap
 
-```{r}
+```{r roadmap}
+library(tibble)
+library(knitr)
 tribble(
   ~name                   , ~implemented, ~paramchecks, ~unittested, ~documented, ~showcased,
   # scripting
@@ -19,7 +21,14 @@ tribble(
   '`reformat_developing`' ,        TRUE,         TRUE,       FALSE,        TRUE,      FALSE,
   
   # documentation
-  '`use_md.gitbook`'      ,        TRUE,         TRUE,       FALSE,        TRUE,      FALSE,
-  '`create_showcase`'     ,       FALSE,        FALSE,       FALSE,       FALSE,      FALSE,
-)
+  '`use_rmd.gitbook`'     ,        TRUE,         TRUE,       FALSE,        TRUE,      FALSE,
+  
+  
+  # todo
+  '`update_roadmap`'      ,       FALSE,        FALSE,       FALSE,       FALSE,      FALSE,
+  '`add_reference`'       ,       FALSE,        FALSE,       FALSE,       FALSE,      FALSE,
+  '`insert_table`'        ,       FALSE,        FALSE,       FALSE,       FALSE,      FALSE,
+  '`insert_tribble`'      ,       FALSE,        FALSE,       FALSE,       FALSE,      FALSE,
+  '`insert_codeblock`'    ,       FALSE,        FALSE,       FALSE,       FALSE,      FALSE,
+) %>% knitr::kable()
 ```

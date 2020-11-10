@@ -14,7 +14,7 @@
 #END: description
 #BEGIN: code
 
-use_md.githbook = function(
+use_rmd.githbook = function(
   dir_path
 ) {
 
@@ -72,8 +72,31 @@ devtools::install_github('')
 ```
 "
 
-template_chapter_1.Rmd = "
-```{r setup chapter 1, include=FALSE}
+template_roadmap.Rmd = "
+```{r setup roadmap, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  eval = TRUE,
+  warning = FALSE,
+  message = FALSE
+  )
+```
+
+# Roadmap
+
+```{r roadmap}
+library(tibble)
+library(knitr)
+tribble(
+  ~name                   , ~implemented, ~paramchecks, ~unittested, ~documented, ~showcased,
+  # commment
+  '`myfun`'               ,        FALSE,        FALSE,       FALSE,       FALSE,      FALSE,
+) %>% knitr::kable()
+```
+"
+
+template_chapter.Rmd = "
+```{r setup chapter, include=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE,
   warning = FALSE,
@@ -81,9 +104,13 @@ knitr::opts_chunk$set(
   )
 ```
 
-# Chapter 1 Title
+# Chapter title
 
-## Chapter 1 Subsection
+## Chapter subsection
+
+```{r chapter subsection code}
+print('a value')
+```
 "
 
 template_references.bib = "
@@ -97,35 +124,27 @@ template_references.bib = "
 }
 "
 
-  if(!dir.exists(dir_path)) {
+  if (dir.exists(dir_path) && length(dir(dir_path)) != 0)
+    rlang::abort(sprintf('dir_path exists and is not empty: %s\n', dir_path))
+  if(!dir.exists(dir_path))
     dir.create(dir_path,recursive = TRUE)
-    template_index.Rmd %>% readr::write_file(file = paste0(dir_path,'/','index.Rmd'))
-    template_chapter_1.Rmd %>% readr::write_file(file = paste0(dir_path,'/','01-chapter-1.Rmd'))
-    template_references.bib %>% readr::write_file(file = paste0(dir_path,'/','references.bib'))
-  } else if (dir.exists(dir_path) && length(dir(dir_path)) == 0) {
-    template_index.Rmd %>% readr::write_file(file = paste0(dir_path,'/','index.Rmd'))
-    template_chapter_1.Rmd %>% readr::write_file(file = paste0(dir_path,'/','01-chapter-1.Rmd'))
-    template_references.bib %>% readr::write_file(file = paste0(dir_path,'/','references.bib'))
-  } else {
-    cat(sprintf('dir_path exists and is not empty: %s\n', dir_path))
-  }
+
+  template_index.Rmd %>% readr::write_file(file = paste0(dir_path,'/','index.Rmd'))
+  template_roadmap.Rmd %>% readr::write_file(file = paste0(dir_path,'/','01-roadmap.Rmd'))
+  template_chapter.Rmd %>% readr::write_file(file = paste0(dir_path,'/','02-chapter.Rmd'))
+  template_references.bib %>% readr::write_file(file = paste0(dir_path,'/','references.bib'))
+
 }
 
 #END: code
 #BEGIN: examples
 #' @examples
 #' #BEGIN: example
-#' # operations
-#' use_md.githbook(')
-#' #END: example
-#'
-#' #BEGIN: example
-#' # {case description}
-#' {code placeholder}
-#' #END: example
-#'
-#' #BEGIN: example
-#' # {case description}
-#' {code placeholder}
+#' # create the template
+#' library(usethis)
+#' library(writethat)
+#' use_rmd.githbook('my_book')
+#' # start editing a file
+#' usethis::edit_file('./my_book/01-roadmap.Rmd')
 #' #END: example
 #END: examples

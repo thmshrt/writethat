@@ -3,7 +3,7 @@
 #' Extract examples from documentation and place in gitbook
 #'
 #'
-#' #' @usage
+#' @usage
 #' create_showcase(
 #'   r_dir_path = './R',
 #'   gitbook_dir_path = './examples/showcase/'
