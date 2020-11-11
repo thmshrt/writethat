@@ -47,10 +47,69 @@ use_r.function = function(
     rlang::abort(message = "param edit_file must satisfy class(v) == 'logical'")
   #END: param checks
 
-  './templates/use_r.function.template.txt' -> template_path
+  text = "
+##BEGIN: description
+##\' {title placeholder}
+##\'
+##\' {description placeholder}
+##\'
+##\' @usage
+##\' {usage placeholder}
+##\'
+##\' @param {param}   \\[{type}\\], {restrictions}
+##\' @param {param}   \\[{type}\\], {restrictions}
+##\'
+##\' @return           [{type}]
+##\'
+##\' @export
+##\' @importFrom magrittr %>%
+##END: description
+##BEGIN: code
+
+myfun = function(
+  param1,
+  param2
+) {
+  ##BEGIN: setup params
+
+  ##END: setup params
+
+  ##BEGIN: param checks
+
+  ##END: param checks
+
+  ##BEGIN: computation
+
+  ##END: computation
+
+  ##BEGIN: return
+
+  ##END: return
+}
+
+##END: code
+##BEGIN: examples
+##\' @examples
+##\' ##BEGIN: example
+##\' ## {case description}
+##\' {code placeholder}
+##\' ##END: example
+##\'
+##\' ##BEGIN: example
+##\' ## {case description}
+##\' {code placeholder}
+##\' ##END: example
+##\'
+##\' ##BEGIN: example
+##\' ## {case description}
+##\' {code placeholder}
+##\' ##END: example
+##END: examples
+" %>% stringi::stri_replace_all(replacement = '\n#',regex = '\n##')
+
 
   if(!file.exists(file_path)) {
-    file.copy(template_path,file_path)
+    text %>% readr::write_file(file = file_path)
   } else {
     cat(sprintf('file_path exits: %s\n', file_path))
   }

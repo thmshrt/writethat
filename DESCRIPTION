@@ -1,6 +1,6 @@
 Package: writethat
-Title: Templated package development
-Version: 0.0.0.9000
+Title: Provides CRAN Valid Documentation Templates
+Version: 0.0.1
 Authors@R: 
     person(given = "Thomas",
            family = "Hart",
