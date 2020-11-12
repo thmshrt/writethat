@@ -1,0 +1,71 @@
+---
+title: "Notes"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,eval=FALSE)
+```
+
+# `rstudioapi`
+
+```{r}
+library(magrittr)
+
+rstudioapi::getActiveDocumentContext() -> con
+con %>% str()
+
+con$selection[[1]]$range
+
+# inserts "hi" right before rstudioapi::getActiveDocumentContext() -> con
+rstudioapi::insertText(location = con$selection[[1]]$range,text = 'hi', id = con$id)
+```
+
+```{r inserting text}
+insert_chunk = function() {
+  text = "
+```{r}
+print('print stuff here')
+\```
+  "
+  rstudioapi::getActiveDocumentContext() -> context
+  rstudioapi::insertText(location = context$selection[[1]]$range,
+                         text = text,
+                         id = context$id)
+}
+```
+
+`r insert_chunk()`
+
+```{r replacing text}
+insert_replace = function() {
+  text = "```{r}
+print('print stuff here')
+\```
+  "
+  
+  rstudioapi::getActiveDocumentContext() -> context
+  
+  # start
+  context$selection[[1]]$range[1]$start['row'] -> line_index
+  start_position = rstudioapi::as.document_position(c(line_index,1))
+  # end
+  end_position = rstudioapi::as.document_position(c(line_index,Inf))
+  # range
+  doc_range = rstudioapi::as.document_range(c(start_position,end_position))
+  
+  # replace text
+  rstudioapi::modifyRange(location = doc_range,
+                          text = text,
+                          id = context$id)
+  
+  # set cursor position
+  cursor_position = rstudioapi::as.document_position(c(line_index+1,1))
+  rstudioapi::setCursorPosition(cursor_position, id = context$id)
+}
+```
+
+the text below will be replaced
+`r insert_replace()`

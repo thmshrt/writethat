@@ -109,7 +109,7 @@ myfun = function(
 
 
   if(!file.exists(file_path)) {
-    text %>% readr::write_file(file = file_path)
+    cat(text,file = file_path)
   } else {
     cat(sprintf('file_path exits: %s\n', file_path))
   }
